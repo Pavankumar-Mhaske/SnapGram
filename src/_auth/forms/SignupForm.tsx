@@ -14,9 +14,12 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { SignupValidation } from "@/lib/validation";
 import { z } from "zod";
+import { Loader } from "lucide-react";
+import { Link } from "react-router-dom";
+import { createUserAccount } from "@/lib/appwrite/api";
 
 const SignupForm = () => {
-  const isLoading = true;
+  const isLoading = false;
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof SignupValidation>>({
@@ -30,10 +33,11 @@ const SignupForm = () => {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof SignupValidation>) {
+  async function onSubmit(values: z.infer<typeof SignupValidation>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values);
+    const newUser = await createUserAccount(values);
   }
   return (
     <Form {...form}>
@@ -44,7 +48,7 @@ const SignupForm = () => {
           Create a new account{" "}
         </h2>
         <p className="text-light-3 small-medium md:base-regular mt-2">
-          To use SanpGram enter your details
+          To use SanpGram, please enter your details
         </p>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -109,11 +113,24 @@ const SignupForm = () => {
           />
           <Button type="submit" className="shad-button_primary">
             {isLoading ? (
-              <div className="flex-center gap-2">Loading...</div>
+              <div className="flex-center gap-2">
+                <Loader /> Loading...
+              </div>
             ) : (
               "Sign-Up"
             )}
           </Button>
+
+          <p className="text-small-regular text-light-2 text-center mt-2">
+            {" "}
+            Already have an account?{" "}
+            <Link
+              to="/sign-in"
+              className="text-primary-500 text-small-semibold ml-1"
+            >
+              Sign-In
+            </Link>
+          </p>
         </form>
       </div>
     </Form>
