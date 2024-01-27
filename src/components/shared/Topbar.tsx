@@ -6,7 +6,6 @@ import { useUserContext } from "@/context/AuthContext";
 
 const Topbar = () => {
   const { mutate: signOut, isSuccess } = useSignOutAccount();
-  44;
 
   const { user } = useUserContext();
 

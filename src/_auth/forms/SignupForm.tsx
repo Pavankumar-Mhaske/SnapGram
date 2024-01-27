@@ -54,6 +54,7 @@ const SignupForm = () => {
     console.log(values);
     const newUser = await createUserAccount(values);
     console.log("created user", newUser);
+    
     if (!newUser) {
       return toast({
         title: "Sign Up failed, Please try again.",
@@ -73,6 +74,7 @@ const SignupForm = () => {
     }
 
     const isLoggedIn = await checkAuthUser();
+    console.log("is logged in", isLoggedIn);
     if (isLoggedIn) {
       form.reset();
       navigate("/");
@@ -82,7 +84,6 @@ const SignupForm = () => {
       });
     }
   }
-
 
   return (
     <Form {...form}>
