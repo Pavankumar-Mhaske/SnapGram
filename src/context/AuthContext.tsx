@@ -39,7 +39,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setUser({
           id: (currentAccount as any).$id,
           name: (currentAccount as any).name,
-          username: (currentAccount as any).userName,
+          username: (currentAccount as any).username,
           email: (currentAccount as any).email,
           imageUrl: (currentAccount as any).imageUrl,
           bio: (currentAccount as any).bio,
