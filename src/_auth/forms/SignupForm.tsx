@@ -15,18 +15,26 @@ import { Button } from "@/components/ui/button";
 import { SignupValidation } from "@/lib/validation";
 import { z } from "zod";
 import { Loader } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useToast } from "@/components/ui/use-toast";
-import { useCreateUserAccount, useSignInAccount } from "@/lib/react-query/queriesAndMutations";
+import {
+  useCreateUserAccount,
+  useSignInAccount,
+} from "@/lib/react-query/queriesAndMutations";
+import { useUserContext } from "@/context/AuthContext";
 
 const SignupForm = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   // hooks
-  const { mutateAsync: createUserAccount, isLoading: isCreatingUser } =
+  const { mutateAsync: createUserAccount, isPending: isCreatingUserAccount } =
     useCreateUserAccount();
 
-  const { mutateAsync: signInAccount, isLoading: isSigningIn } = useSignInAccount();
+  const { checkAuthUser, isLoading: isUserLoading } = useUserContext();
+
+  const { mutateAsync: signInAccount, isPending: isSigningIn } =
+    useSignInAccount();
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof SignupValidation>>({
@@ -53,9 +61,9 @@ const SignupForm = () => {
     }
 
     // create session and store it in react context - so that all time we will know about the logged in user
-    const session  = await signInAccount({
-      email: values.email, 
-      password: values.password
+    const session = await signInAccount({
+      email: values.email,
+      password: values.password,
     });
 
     if (!session) {
@@ -63,7 +71,19 @@ const SignupForm = () => {
         title: "Sign In failed, Please try again.",
       });
     }
+
+    const isLoggedIn = await checkAuthUser();
+    if (isLoggedIn) {
+      form.reset();
+      navigate("/");
+    } else {
+      return toast({
+        title: "Sign Up failed, Please try again.",
+      });
+    }
   }
+
+
   return (
     <Form {...form}>
       <div className="sm:w-420 flex-center flex-col">
@@ -137,7 +157,7 @@ const SignupForm = () => {
             )}
           />
           <Button type="submit" className="shad-button_primary">
-            {isCreatingUser ? (
+            {isCreatingUserAccount ? (
               <div className="flex-center gap-2">
                 <Loader /> Loading...
               </div>
