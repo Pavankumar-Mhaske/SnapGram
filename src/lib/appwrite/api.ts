@@ -335,6 +335,7 @@ export async function deletePost(postId: string, imageId: string) {
     if (!postId || !imageId)
       throw Error("postId or ImageId is not provided for deleting post");
 
+    console.log("postId and imageId", postId, imageId);
     const statusCode = await databases.deleteDocument(
       appwriteConfig.databaseId,
       appwriteConfig.postCollectionId,

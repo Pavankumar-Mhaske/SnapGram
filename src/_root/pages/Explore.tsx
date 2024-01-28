@@ -16,7 +16,6 @@ const Explore = () => {
   const { data: searchedPosts, isFetching: isSearchFetching } =
     useSearchPosts(debouncedValue);
 
-  console.log("searched post in explore", searchedPosts);
 
   console.log(posts);
   if (!posts) {

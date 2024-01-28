@@ -169,7 +169,7 @@ export const useUpdatePost = () => {
 };
 
 export const useDeletePost = () => {
-  console.log("inside useUpdatePost query & mutations");
+  console.log("inside useDeletePost query & mutations");
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: ({ postId, imageId }: { postId: string; imageId: string }) =>
@@ -195,7 +195,6 @@ export const useGetPosts = () => {
 };
 
 export const useSearchPosts = (searchTerm: string) => {
-  console.log("searchTerm inside useSearchPosts query & mutations:", searchTerm);
   return useQuery({
     queryKey: [QUERY_KEYS.SEARCH_POSTS, searchTerm],
     queryFn: () => searchPosts(searchTerm),

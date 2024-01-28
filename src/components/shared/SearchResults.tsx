@@ -12,7 +12,6 @@ const SearchResults = ({
   isSearchFetching,
   searchedPosts,
 }: SearchResultsProps) => {
-  console.log("searched post in searchResults", searchedPosts);
   if (isSearchFetching) return <Loader />;
   // <GridPostList key={`page-${index}`} posts={item.documents} />
   if (searchedPosts && searchedPosts?.documents.length > 0)
