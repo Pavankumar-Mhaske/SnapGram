@@ -329,3 +329,24 @@ export async function updatePost(post: IUpdatePost) {
     console.log(error);
   }
 }
+
+export async function deletePost(postId: string, imageId: string) {
+  try {
+    if (!postId || !imageId)
+      throw Error("postId or ImageId is not provided for deleting post");
+    
+    const statusCode = await databases.deleteDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.postCollectionId,
+      postId
+    );
+
+    if (!statusCode) throw Error("Error in deleting post");
+
+    await deleteFile(imageId);
+
+    return { status: "ok" };
+  } catch (error) {
+    console.log(error);
+  }
+}
