@@ -334,7 +334,7 @@ export async function deletePost(postId: string, imageId: string) {
   try {
     if (!postId || !imageId)
       throw Error("postId or ImageId is not provided for deleting post");
-    
+
     const statusCode = await databases.deleteDocument(
       appwriteConfig.databaseId,
       appwriteConfig.postCollectionId,
@@ -346,6 +346,39 @@ export async function deletePost(postId: string, imageId: string) {
     await deleteFile(imageId);
 
     return { status: "ok" };
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getInfinitePosts({ pageParam }: { pageParam: number }) {
+  const queries: any[] = [Query.orderDesc("$updatedAt"), Query.limit(10)];
+  if (pageParam) queries.push(Query.cursorAfter(pageParam.toString()));
+  try {
+    const posts = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.postCollectionId,
+      queries
+    );
+    if (!posts) throw Error("No posts found");
+    return posts;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function searchPosts(searchTerm: string) {
+  try {
+    console.log("searchTerm inside useSearchPosts api's:", searchTerm.length);
+
+    const posts = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.postCollectionId,
+      [Query.search("caption", searchTerm)]
+    );
+    if (!posts) throw Error("No posts found");
+    console.log("posts in searchPosts", posts);
+    return posts;
   } catch (error) {
     console.log(error);
   }
