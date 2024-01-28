@@ -21,10 +21,11 @@ import { useToast } from "../ui/use-toast";
 import { useNavigate } from "react-router-dom";
 
 type PostFormProps = {
+  action: "Create" | "Update";
   post?: Models.Document;
 };
 
-const PostForm = ({ post }: PostFormProps) => {
+const PostForm = ({ action, post }: PostFormProps) => {
   const { mutateAsync: createPost, isPending: isLoadingCreate } =
     useCreatePost();
 
@@ -55,6 +56,7 @@ const PostForm = ({ post }: PostFormProps) => {
     console.log("newPost : ", newPost);
     navigate("/");
   }
+  console.log("post imageUrl : ", post?.imageUrl);
 
   return (
     <Form {...form}>
