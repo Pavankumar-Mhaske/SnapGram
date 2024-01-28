@@ -1,7 +1,12 @@
-import { INewUser } from "@/types";
-import { account, appwriteConfig, avatars, databases } from "./config";
+import { INewPost, INewUser } from "@/types";
+import { account, appwriteConfig, avatars, databases, storage } from "./config";
 import { ID, Query } from "appwrite";
 
+// ============================================================
+// AUTH
+// ============================================================
+
+// ============================== SIGN UP
 export async function createUserAccount(user: INewUser) {
   try {
     const newAccount = await account.create(
@@ -28,7 +33,7 @@ export async function createUserAccount(user: INewUser) {
     return error;
   }
 }
-
+// ============================== SAVE USER TO DB
 export async function saveUserToDB(user: {
   accountId: string;
   name: string;
@@ -49,7 +54,7 @@ export async function saveUserToDB(user: {
     return error;
   }
 }
-
+// ============================== SIGN IN
 export async function signInAccount(user: { email: string; password: string }) {
   try {
     const session = await account.createEmailSession(user.email, user.password);
@@ -59,7 +64,7 @@ export async function signInAccount(user: { email: string; password: string }) {
     return error;
   }
 }
-
+// ============================== GET USER
 export async function getCurrentUser() {
   try {
     const currentAccount = await account.get();
@@ -79,7 +84,7 @@ export async function getCurrentUser() {
     return error;
   }
 }
-
+// ============================== SIGN OUT
 export async function signOutAccount() {
   try {
     const session = await account.deleteSession("current");
@@ -87,5 +92,99 @@ export async function signOutAccount() {
   } catch (error) {
     console.log(error);
     return error;
+  }
+}
+
+// POSTS
+// ============================================================
+
+// ============================== CREATE POST
+export async function createPost(post: INewPost) {
+  try {
+    console.log("inside api createPost");
+    // Upload file to appwrite storage
+    const uploadedFile = await uploadFile(post.file[0]);
+
+    if (!uploadedFile) throw Error("Error in uploading file");
+
+    // Get file url
+    const fileUrl = getFilePreview(uploadedFile.$id);
+    if (!fileUrl) {
+      await deleteFile(uploadedFile.$id);
+      throw Error;
+    }
+
+    // Convert tags into array
+    const tags = post.tags?.replace(/ /g, "").split(",") || [];
+
+    // Create post and save to DB
+    const newPost = await databases.createDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.postCollectionId,
+      ID.unique(),
+      {
+        creator: post.userId,
+        caption: post.caption,
+        imageUrl: fileUrl,
+        imageId: uploadedFile.$id,
+        location: post.location,
+        tags: tags,
+      }
+    );
+    console.log("newPost", newPost);
+    if (!newPost) {
+      await deleteFile(uploadedFile.$id);
+      throw Error;
+    }
+
+    return newPost;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// ============================== UPLOAD FILE
+export async function uploadFile(file: File) {
+  try {
+    const uploadedFile = await storage.createFile(
+      appwriteConfig.storageId,
+      ID.unique(),
+      file
+    );
+
+    return uploadedFile;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// ============================== GET FILE URL
+export function getFilePreview(fileId: string) {
+  try {
+    const fileUrl = storage.getFilePreview(
+      appwriteConfig.storageId,
+      fileId,
+      2000, // width
+      2000, // height
+      "top", // gravity
+      100 // quality
+    );
+
+    if (!fileUrl) throw Error;
+
+    return fileUrl;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// ============================== DELETE FILE
+export async function deleteFile(fileId: string) {
+  try {
+    await storage.deleteFile(appwriteConfig.storageId, fileId);
+
+    return { status: "ok" };
+  } catch (error) {
+    console.log(error);
   }
 }
