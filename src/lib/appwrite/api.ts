@@ -404,6 +404,24 @@ export async function getUsers(limit?: number) {
   }
 }
 
+// ============================== GET USER BY ID
+export async function getUserById(userId: string) {
+  try {
+    const user = await databases.getDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.userCollectionId,
+      userId
+    );
+
+    if (!user) throw Error("No user found");
+
+    return user;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
 // function to get all saved post of current logged in user provoided userId in props
 export async function getSavedPosts(userId: string) {
   try {
