@@ -385,13 +385,20 @@ export async function searchPosts(searchTerm: string) {
   }
 }
 
-export async function getUsers() {
+export async function getUsers(limit?: number) {
+  const queries: any[] = [Query.orderDesc("$createdAt")];
+
+  if (limit) {
+    queries.push(Query.limit(limit));
+  }
   try {
     const users = await databases.listDocuments(
       appwriteConfig.databaseId,
       appwriteConfig.userCollectionId,
-      [Query.orderDesc("$createdAt"), Query.limit(10)]
+      queries
     );
+    if (!users) throw Error("No users found");
+    return users;
   } catch (error) {
     console.log(error);
   }
