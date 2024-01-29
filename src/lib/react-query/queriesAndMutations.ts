@@ -148,12 +148,12 @@ export const useGetCurrentUser = () => {
   });
 };
 
-export const useGetUsers = () => {
+export const useGetUsers = (limit?: number) => {
   return useQuery({
     queryKey: [QUERY_KEYS.GET_USERS],
-    queryFn: () => getUsers(),
+    queryFn: () => getUsers(limit),
   });
-}
+};
 
 export const useGetPostById = (postId: string) => {
   return useQuery({
