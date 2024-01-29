@@ -1,4 +1,4 @@
-import { INewPost, INewUser, IUpdatePost } from "@/types";
+import { INewPost, INewUser, IUpdatePost, IUpdateUser } from "@/types";
 import { account, appwriteConfig, avatars, databases, storage } from "./config";
 import { ID, Query } from "appwrite";
 
@@ -280,19 +280,19 @@ export async function getPostById(postId: string) {
 export async function updatePost(post: IUpdatePost) {
   try {
     // check if user is updating image as well ?
-    const hadFileToUpdate = post.file.length > 0;
+    const hasFileToUpdate = post.file.length > 0;
 
     let image = {
       imageUrl: post.imageUrl,
       imageId: post.imageId,
     };
 
-    if (hadFileToUpdate) {
+    if (hasFileToUpdate) {
       // Upload file to appwrite storage
       const uploadedFile = await uploadFile(post.file[0]);
       if (!uploadedFile) throw Error("Error in uploading file");
 
-      // Get file url
+      // Get new file url
       const fileUrl = getFilePreview(uploadedFile.$id);
       if (!fileUrl) {
         await deleteFile(uploadedFile.$id);
@@ -305,7 +305,7 @@ export async function updatePost(post: IUpdatePost) {
     // Convert tags into array
     const tags = post.tags?.replace(/ /g, "").split(",") || [];
 
-    // Create post and save to DB
+    // Update post and save to DB
     const updatedPost = await databases.updateDocument(
       appwriteConfig.databaseId,
       appwriteConfig.postCollectionId,
@@ -319,11 +319,21 @@ export async function updatePost(post: IUpdatePost) {
       }
     );
     console.log("updated post", updatePost);
+
+    // Failed to update
     if (!updatePost) {
-      await deleteFile(post.imageId);
+      // Delete new file that has been recently uploaded
+      if (hasFileToUpdate) {
+        await deleteFile(post.imageId);
+      }
+      // If no new file uploaded, just throw error
       throw Error;
     }
 
+    // (if we got new file in updating data) ? (Safely delete old file after successful update) : (keep old file as it is)
+    if (hasFileToUpdate) {
+      await deleteFile(post.imageId);
+    }
     return updatePost;
   } catch (error) {
     console.log(error);
@@ -421,6 +431,66 @@ export async function getUserById(userId: string) {
   }
 }
 
+// ============================== UPDATE USER
+export async function updateUser(user: IUpdateUser) {
+  console.log("inside api updateUser", user);
+  try {
+    // check if user is updating image as well ?
+    const hasFileToUpdate = user.file.length > 0;
+
+    let image = {
+      imageUrl: user.imageUrl,
+      imageId: user.imageId,
+    };
+
+    if (hasFileToUpdate) {
+      // Upload file to appwrite storage
+      const uploadedFile = await uploadFile(user.file[0]);
+      if (!uploadedFile) throw Error("Error in uploading file");
+
+      // Get new file url
+      const fileUrl = getFilePreview(uploadedFile.$id);
+      if (!fileUrl) {
+        await deleteFile(uploadedFile.$id);
+        throw Error;
+      }
+
+      image = { ...image, imageUrl: fileUrl, imageId: uploadedFile.$id };
+    }
+
+    // update user and save to DB
+    const updatedUser = await databases.updateDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.userCollectionId,
+      user.userId,
+      {
+        name: user.name,
+        bio: user.bio,
+        imageUrl: image.imageUrl,
+        imageId: image.imageId,
+      }
+    );
+    console.log("updated user", updatedUser);
+    // Failed to update
+    if (!updatedUser) {
+      // Delete new file that has been recently uploaded
+      if (hasFileToUpdate) {
+        await deleteFile(user.imageId);
+      }
+      // if no new file was uploaded, then throw error
+      throw Error;
+    }
+
+    // (if we got new file in updating data) ? (Safely delete old file after successful update) : (keep old file as it is)
+    if (user.imageId && hasFileToUpdate) {
+      await deleteFile(user.imageId);
+    }
+
+    return updatedUser;
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 // function to get all saved post of current logged in user provoided userId in props
 export async function getSavedPosts(userId: string) {
