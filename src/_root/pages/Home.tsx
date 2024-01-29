@@ -17,7 +17,7 @@ const Home = () => {
 
   const {
     data: creators,
-    isLoading: isUserLoading,
+    isPending: isUserLoading,
     isError: isErrorCreator,
   } = useGetUsers(10);
 
