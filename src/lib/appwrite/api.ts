@@ -403,3 +403,20 @@ export async function getUsers(limit?: number) {
     console.log(error);
   }
 }
+
+// function to get all saved post of current logged in user provoided userId in props
+export async function getSavedPosts(userId: string) {
+  try {
+    const savedPosts = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.savesCollectionId,
+      [Query.equal("user", userId)]
+    );
+
+    if (!savedPosts) throw Error("No saved posts found");
+    console.log("savedPosts", savedPosts);
+    return savedPosts;
+  } catch (error) {
+    console.log(error);
+  }
+}
