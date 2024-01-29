@@ -23,7 +23,7 @@ export async function createUserAccount(user: INewUser) {
       accountId: newAccount.$id,
       name: newAccount.name,
       email: newAccount.email,
-      username: user.name,
+      username: user.username,
       imageUrl: avatarUrl,
     });
 
