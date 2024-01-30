@@ -33,8 +33,6 @@ const ProfileForm = ({ user }: UserFormProps) => {
   const { toast } = useToast();
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
-  console.log("id : ", id);
-  console.log("user : ", user);
 
   const form = useForm<z.infer<typeof ProfileValidation>>({
     resolver: zodResolver(ProfileValidation),
@@ -46,8 +44,6 @@ const ProfileForm = ({ user }: UserFormProps) => {
       bio: user ? user?.bio : "",
     },
   });
-
-  console.log("forms : ", form);
 
   // Queries
   const { data: currentUser } = useGetUserById(id || "");
@@ -67,6 +63,7 @@ const ProfileForm = ({ user }: UserFormProps) => {
     const updatedUser = await updateUser({
       userId: currentUser?.$id || "",
       name: value.name,
+      username: value.username,
       bio: value.bio,
       file: value.file,
       imageUrl: currentUser?.imageUrl,
@@ -125,7 +122,8 @@ const ProfileForm = ({ user }: UserFormProps) => {
             <FormItem>
               <FormLabel className="shad-form_label">Username</FormLabel>
               <FormControl>
-                <Input type="text" className="shad-input" {...field} disabled />
+                <Input type="text" className="shad-input" {...field}  />
+                {/* <Input type="text" className="shad-input" {...field} disabled /> */}
               </FormControl>
               <FormMessage className="shad-form_message" />
             </FormItem>
@@ -179,7 +177,9 @@ const ProfileForm = ({ user }: UserFormProps) => {
           <Button
             type="submit"
             className="shad-button_primary whitespace-nowrap"
+            disabled={isLoadingUpdate}
           >
+            {isLoadingUpdate && <Loader />}
             Update Profile
           </Button>
         </div>
