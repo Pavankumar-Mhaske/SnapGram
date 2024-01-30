@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -28,21 +28,27 @@ import { Button } from "@/components/ui/button";
 const UpdateProfile = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
+  console.log("id : ", id);
   const { user, setUser } = useUserContext();
+  console.log("user : ", user);
+
   const form = useForm<z.infer<typeof ProfileValidation>>({
     resolver: zodResolver(ProfileValidation),
     defaultValues: {
       file: [],
-      name: user?.name,
-      username: user?.username,
-      email: user?.email,
-      bio: user?.bio || "",
+      name: user?  user?.name : "dummy name",
+      username: user ? user?.username : "dummy username",
+      email: user? user?.email : "dummy email",
+      bio: user ? user?.bio : "",
     },
   });
 
+  console.log("forms : ", form);
+
   // Queries
   const { data: currentUser } = useGetUserById(id || "");
+  console.log("currentUser : ", currentUser);
   const { mutateAsync: updateUser, isPending: isLoadingUpdate } =
     useUpdateUser();
 
@@ -72,9 +78,9 @@ const UpdateProfile = () => {
 
     setUser({
       ...user,
-      name: updatedUser.name,
-      bio: updatedUser.bio,
-      imageUrl: updatedUser.imageUrl,
+      name: updatedUser?.name,
+      bio: updatedUser?.bio,
+      imageUrl: updatedUser?.imageUrl,
     });
 
     return navigate(`/profile/${id}`);
@@ -93,6 +99,7 @@ const UpdateProfile = () => {
           />
           <h2 className="h3-bold md:h2-bold text-left w-full">Edit Profile</h2>
         </div>
+
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(handleUpdate)}
