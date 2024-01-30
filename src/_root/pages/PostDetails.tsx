@@ -63,7 +63,7 @@ const PostDetails = () => {
               </Link>
               <div className="flex-center gap-0">
                 <Link
-                  to={`update-post${post?.$id}`}
+                  to={`/update-post/${post?.$id}`}
                   className={`${user.id !== post?.creator.$id && "hidden"}`}
                 >
                   <img
