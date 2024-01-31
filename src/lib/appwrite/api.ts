@@ -189,12 +189,34 @@ export async function deleteFile(fileId: string) {
   }
 }
 
-export async function getRecentPosts() {
+
+// export async function getRecentPosts() {
+//   try {
+//     const recentPosts = await databases.listDocuments(
+//       appwriteConfig.databaseId,
+//       appwriteConfig.postCollectionId,
+//       [Query.orderDesc("$createdAt"), Query.limit(20)]
+//     );
+
+//     if (!recentPosts) throw Error("No posts found");
+//     console.log("recentPosts", recentPosts);
+//     return recentPosts;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
+
+// getRecentPosts with pagination
+export async function getRecentPosts({ pageParam }: { pageParam: number }) {
+  const queries: any[] = [Query.orderDesc("$createdAt"), Query.limit(18)];
+  if (pageParam) queries.push(Query.cursorAfter(pageParam.toString()));
+
   try {
     const recentPosts = await databases.listDocuments(
       appwriteConfig.databaseId,
       appwriteConfig.postCollectionId,
-      [Query.orderDesc("$createdAt"), Query.limit(20)]
+      // [Query.orderDesc("$createdAt"), Query.limit(20)]
+      queries
     );
 
     if (!recentPosts) throw Error("No posts found");
@@ -205,6 +227,7 @@ export async function getRecentPosts() {
   }
 }
 
+// getInfinitePosts with pagination
 export async function getInfinitePosts({ pageParam }: { pageParam: number }) {
   const queries: any[] = [Query.orderDesc("$updatedAt"), Query.limit(18)];
   if (pageParam) queries.push(Query.cursorAfter(pageParam.toString()));
