@@ -2,18 +2,38 @@ import Loader from "@/components/shared/Loader";
 import PostCard from "@/components/shared/PostCard";
 import UserCard from "@/components/shared/UserCard";
 import {
+  useGetPosts,
   useGetRecentPosts,
   useGetUsers,
 } from "@/lib/react-query/queriesAndMutations";
 import { Models } from "appwrite";
-import React from "react";
+import React, { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 
 const Home = () => {
+  const { ref, inView } = useInView({
+    /* Optional options */
+    threshold: 0,
+  });
+  // const {
+  //   data: posts,
+  //   isPending: isPostLoading,
+  //   isError: isErrorPost,
+  // } = useGetRecentPosts();
+
   const {
     data: posts,
     isPending: isPostLoading,
+    fetchNextPage,
     isError: isErrorPost,
-  } = useGetRecentPosts();
+    hasNextPage,
+  } = useGetPosts();
+
+  useEffect(() => {
+    if (inView) {
+      fetchNextPage();
+    }
+  }, [inView]);
 
   const {
     data: creators,
@@ -37,22 +57,24 @@ const Home = () => {
   console.log("creators", creators);
   return (
     <div className="flex flex-1">
+      {/* Posts section */}
       {!isErrorPost ? (
-        <div className="home-container">
+        <div className="home-container border">
           <div className="home-posts">
             <h2 className="h3-bold md:h2-bold text-left w-full">Home Feed</h2>
             {isPostLoading && !posts ? (
               <Loader />
             ) : (
-              <ul className="flex flex-col flex-1 gap-9 w-full">
-                {posts?.documents.map((post: Models.Document) => (
-                  <li key={post.$id} className="flex justify-center w-full">
-                    <PostCard key={post.caption} post={post} />
-                  </li>
-                ))}
-              </ul>
+              posts?.pages.map((item, index) => (
+                <PostCard key={`page-${index}`} posts={item?.documents || ""} />
+              ))
             )}
           </div>
+          {hasNextPage && (
+            <div ref={ref} className="mt-10">
+              <Loader />
+            </div>
+          )}
         </div>
       ) : (
         <div className="home-container">
@@ -63,6 +85,7 @@ const Home = () => {
           </p>
         </div>
       )}
+      {/* Creators section */}
       {!isErrorCreator ? (
         <div className="home-creators">
           <h3 className="h3-bold text-light-1">Top Creators</h3>
