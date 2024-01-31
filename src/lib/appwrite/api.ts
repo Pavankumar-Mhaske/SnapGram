@@ -205,6 +205,22 @@ export async function getRecentPosts() {
   }
 }
 
+export async function getInfinitePosts({ pageParam }: { pageParam: number }) {
+  const queries: any[] = [Query.orderDesc("$updatedAt"), Query.limit(18)];
+  if (pageParam) queries.push(Query.cursorAfter(pageParam.toString()));
+  try {
+    const posts = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.postCollectionId,
+      queries
+    );
+    if (!posts) throw Error("No posts found");
+    return posts;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export async function likePost(postId: string, likesArray: string[]) {
   try {
     const updatedPost = await databases.updateDocument(
@@ -374,22 +390,6 @@ export async function deletePost(postId: string, imageId: string) {
     await deleteFile(imageId);
 
     return { status: "ok" };
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-export async function getInfinitePosts({ pageParam }: { pageParam: number }) {
-  const queries: any[] = [Query.orderDesc("$updatedAt"), Query.limit(18)];
-  if (pageParam) queries.push(Query.cursorAfter(pageParam.toString()));
-  try {
-    const posts = await databases.listDocuments(
-      appwriteConfig.databaseId,
-      appwriteConfig.postCollectionId,
-      queries
-    );
-    if (!posts) throw Error("No posts found");
-    return posts;
   } catch (error) {
     console.log(error);
   }
