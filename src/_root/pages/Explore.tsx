@@ -36,10 +36,24 @@ const Explore = () => {
     );
   }
   const shouldShowSearchResults = searchValue !== "" && searchValue.length > 0;
-  const shouldShowPosts =
-    !shouldShowSearchResults &&
-    posts.pages.every((page) => page?.documents?.length === 0);
 
+  // const shouldShowPosts =
+  //   !shouldShowSearchResults &&
+  //   posts.pages.every((page) => {
+  //     const result = page?.documents?.length === 0;
+  //     console.log("page length", page.length);
+  //     console.log("page?.documents?.length", page?.documents?.length);
+  //     console.log("Result 🧧🧧", result);
+  //     return result;
+  //   });
+
+  const endPostReached =
+  !shouldShowSearchResults &&
+    posts.pages.length > 0 &&
+    posts.pages[posts.pages.length - 1]?.documents?.length === 0;
+  // console.log("searchedPosts 💘", searchedPosts);
+
+  console.log("posts 💘", posts);
   return (
     <div className="explore-container">
       <div className="explore-inner_container">
@@ -78,11 +92,21 @@ const Explore = () => {
             isSearchFetching={isSearchFetching}
             searchedPosts={searchedPosts}
           />
-        ) : shouldShowPosts ? (
-          <p className="text-light-4">End of posts</p>
+        ) : endPostReached ? (
+          <>
+            {posts.pages.map((item, index) => (
+              <GridPostList
+                key={`page-${index}`}
+                posts={item?.documents || ""}
+              />
+            ))}
+            <p className="text-light-4  mb-10 text-center w-full">
+              End of posts
+            </p>
+          </>
         ) : (
           posts.pages.map((item, index) => (
-            <GridPostList key={`page-${index}`} posts={item.documents} />
+            <GridPostList key={`page-${index}`} posts={item?.documents || ""} />
           ))
         )}
       </div>
