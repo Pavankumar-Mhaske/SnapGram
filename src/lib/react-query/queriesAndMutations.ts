@@ -102,12 +102,24 @@ export const useGetPosts = () => {
 };
 
 // useGetUsers with infinite scroll (pagination)
-export const useGetUsers = (limit?: number) => {
-  return useQuery({
+export const useGetUsers = () => {
+  return useInfiniteQuery({
     queryKey: [QUERY_KEYS.GET_USERS],
-    queryFn: () => getUsers(limit),
+    queryFn: getUsers,
+    getNextPageParam: (lastPage) => {
+      if (lastPage && lastPage.documents.length === 0) return null;
+      const lastId = lastPage?.documents[lastPage?.documents.length - 1].$id;
+      return lastId;
+    },
   });
 };
+
+// export const useGetUsers = (limit?: number) => {
+//   return useQuery({
+//     queryKey: [QUERY_KEYS.GET_USERS],
+//     queryFn: () => getUsers(limit),
+//   });
+// };
 
 export const useLikePost = () => {
   const queryClient = useQueryClient();
