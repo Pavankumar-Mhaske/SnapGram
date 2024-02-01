@@ -3,6 +3,7 @@ import { Models } from "appwrite";
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
 type UserCardProps = {
+  action: "People" | "Home";
   users: Models.Document[] | "";
 };
 
@@ -14,12 +15,31 @@ type UserCardProps = {
 //   ))}
 // </ul>; */}
 
-const UserCard = ({ users }: UserCardProps) => {
+{
+  /* <ul className="grid 2xl:grid-cols-2 gap-6">
+{creators?.documents.map((creator) => (
+  <li key={creator?.$id}>
+    <UserCard user={creator} />
+  </li>
+))}
+</ul> */
+}
+
+const UserCard = ({ action, users }: UserCardProps) => {
   console.log("user", users);
   return (
-    <ul className="user-grid">
+    <ul
+      className={`${
+        action === "Home" ? "grid 2xl:grid-cols-2 gap-6" : "user-grid"
+      } `}
+    >
       {users.map((user) => (
-        <li key={user?.$id} className="flex-1 min-w-[200px] w-full">
+        <li
+          key={user?.$id}
+          className={`${
+            action === "People" ? "flex-1 min-w-[200px] w-full" : ""
+          }`}
+        >
           <Link to={`/profile/${user.$id}`} className="user-card">
             <img
               src={user.imageUrl || "/assets/icons/profile-placeholder.svg"}
