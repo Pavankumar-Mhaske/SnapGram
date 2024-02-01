@@ -2,15 +2,28 @@ import Loader from "@/components/shared/Loader";
 import UserCard from "@/components/shared/UserCard";
 import { useToast } from "@/components/ui/use-toast";
 import { useGetUsers } from "@/lib/react-query/queriesAndMutations";
-import React from "react";
+import React, { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 
 const AllUsers = () => {
   const { toast } = useToast();
+  const { ref, inView } = useInView({
+    /* Optional options */
+    threshold: 0,
+  });
   const {
     data: creators,
     isPending: isUserLoading,
+    fetchNextPage,
     isError: isErrorCreators,
+    hasNextPage,
   } = useGetUsers();
+
+  useEffect(() => {
+    if (inView) {
+      fetchNextPage();
+    }
+  }, [inView]);
 
   if (isErrorCreators) {
     toast({
@@ -27,15 +40,16 @@ const AllUsers = () => {
         {isUserLoading && !creators ? (
           <Loader />
         ) : (
-          <ul className="user-grid">
-            {creators?.documents.map((creator) => (
-              <li key={creator?.$id} className="flex-1 min-w-[200px] w-full">
-                <UserCard user={creator} />
-              </li>
-            ))}
-          </ul>
+          creators?.pages.map((creator, index) => (
+            <UserCard key={`page-${index}`} users={creator?.documents || ""} />
+          ))
         )}
       </div>
+      {hasNextPage && (
+        <div ref={ref} className="mt-10">
+          <Loader />
+        </div>
+      )}
     </div>
   );
 };
