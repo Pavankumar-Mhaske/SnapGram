@@ -245,7 +245,7 @@ export async function getInfinitePosts({ pageParam }: { pageParam: number }) {
 
 // getUsers with pagination
 export async function getUsers({ pageParam }: { pageParam: number }) {
-  const queries: any[] = [Query.orderDesc("$createdAt"), Query.limit(9)];
+  const queries: any[] = [Query.orderDesc("$createdAt"), Query.limit(12)];
   if (pageParam) queries.push(Query.cursorAfter(pageParam.toString()));
 
   // if (limit) {
