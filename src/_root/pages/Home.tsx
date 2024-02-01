@@ -39,7 +39,8 @@ const Home = () => {
     data: creators,
     isPending: isUserLoading,
     isError: isErrorCreator,
-  } = useGetUsers(10);
+  } = useGetUsers();
+  // } = useGetUsers(10);
 
   // if (isErrorPost || isErrorCreator) {
   //   return (
