@@ -189,7 +189,6 @@ export async function deleteFile(fileId: string) {
   }
 }
 
-
 // export async function getRecentPosts() {
 //   try {
 //     const recentPosts = await databases.listDocuments(
@@ -239,6 +238,26 @@ export async function getInfinitePosts({ pageParam }: { pageParam: number }) {
     );
     if (!posts) throw Error("No posts found");
     return posts;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// getUsers with pagination
+export async function getUsers(limit?: number) {
+  const queries: any[] = [Query.orderDesc("$createdAt")];
+
+  if (limit) {
+    queries.push(Query.limit(limit));
+  }
+  try {
+    const users = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.userCollectionId,
+      queries
+    );
+    if (!users) throw Error("No users found");
+    return users;
   } catch (error) {
     console.log(error);
   }
@@ -430,25 +449,6 @@ export async function searchPosts(searchTerm: string) {
     if (!posts) throw Error("No posts found");
     console.log("posts in searchPosts", posts);
     return posts;
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-export async function getUsers(limit?: number) {
-  const queries: any[] = [Query.orderDesc("$createdAt")];
-
-  if (limit) {
-    queries.push(Query.limit(limit));
-  }
-  try {
-    const users = await databases.listDocuments(
-      appwriteConfig.databaseId,
-      appwriteConfig.userCollectionId,
-      queries
-    );
-    if (!users) throw Error("No users found");
-    return users;
   } catch (error) {
     console.log(error);
   }
