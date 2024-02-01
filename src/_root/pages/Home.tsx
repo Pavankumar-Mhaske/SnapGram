@@ -54,16 +54,32 @@ const Home = () => {
   //   );
   // }
 
+  const endPostReached =
+    posts?.pages.length > 0 &&
+    posts?.pages[posts?.pages.length - 1]?.documents?.length === 0;
+
   console.log("creators", creators);
   return (
     <div className="flex flex-1">
       {/* Posts section */}
       {!isErrorPost ? (
-        <div className="home-container border">
+        <div className="home-container ">
           <div className="home-posts">
             <h2 className="h3-bold md:h2-bold text-left w-full">Home Feed</h2>
             {isPostLoading && !posts ? (
               <Loader />
+            ) : endPostReached ? (
+              <>
+                {posts?.pages.map((item, index) => (
+                  <PostCard
+                    key={`page-${index}`}
+                    posts={item?.documents || ""}
+                  />
+                ))}
+                <p className="text-light-4  mb-10 text-center w-full">
+                  End of posts
+                </p>
+              </>
             ) : (
               posts?.pages.map((item, index) => (
                 <PostCard key={`page-${index}`} posts={item?.documents || ""} />
