@@ -41,7 +41,7 @@ const AllUsers = () => {
           <Loader />
         ) : (
           creators?.pages.map((creator, index) => (
-            <UserCard key={`page-${index}`} users={creator?.documents || ""} />
+            <UserCard key={`page-${index}`} users={creator?.documents || ""}  action="People" />
           ))
         )}
       </div>
