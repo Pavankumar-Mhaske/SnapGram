@@ -244,12 +244,13 @@ export async function getInfinitePosts({ pageParam }: { pageParam: number }) {
 }
 
 // getUsers with pagination
-export async function getUsers(limit?: number) {
-  const queries: any[] = [Query.orderDesc("$createdAt")];
+export async function getUsers({ pageParam }: { pageParam: number }) {
+  const queries: any[] = [Query.orderDesc("$createdAt"), Query.limit(9)];
+  if (pageParam) queries.push(Query.cursorAfter(pageParam.toString()));
 
-  if (limit) {
-    queries.push(Query.limit(limit));
-  }
+  // if (limit) {
+  //   queries.push(Query.limit(limit));
+  // }
   try {
     const users = await databases.listDocuments(
       appwriteConfig.databaseId,
@@ -262,6 +263,25 @@ export async function getUsers(limit?: number) {
     console.log(error);
   }
 }
+// // getUsers with pagination
+// export async function getUsers(limit?: number) {
+//   const queries: any[] = [Query.orderDesc("$createdAt")];
+
+//   if (limit) {
+//     queries.push(Query.limit(limit));
+//   }
+//   try {
+//     const users = await databases.listDocuments(
+//       appwriteConfig.databaseId,
+//       appwriteConfig.userCollectionId,
+//       queries
+//     );
+//     if (!users) throw Error("No users found");
+//     return users;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
 
 export async function likePost(postId: string, likesArray: string[]) {
   try {
