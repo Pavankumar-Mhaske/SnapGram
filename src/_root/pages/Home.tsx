@@ -15,6 +15,7 @@ const Home = () => {
     /* Optional options */
     threshold: 0,
   });
+
   // const {
   //   data: posts,
   //   isPending: isPostLoading,
@@ -38,8 +39,11 @@ const Home = () => {
   const {
     data: creators,
     isPending: isUserLoading,
+    fetchNextPage: fetchNextPageUser,
     isError: isErrorCreator,
+    hasNextPage: hasNextPageUser,
   } = useGetUsers();
+
   // } = useGetUsers(10);
 
   // if (isErrorPost || isErrorCreator) {
@@ -56,7 +60,7 @@ const Home = () => {
   // }
 
   const endPostReached =
-    posts?.pages.length > 0 &&
+    (posts?.pages.length || 0) > 0 &&
     posts?.pages[posts?.pages.length - 1]?.documents?.length === 0;
 
   console.log("creators", creators);
@@ -102,6 +106,7 @@ const Home = () => {
           </p>
         </div>
       )}
+
       {/* Creators section */}
       {!isErrorCreator ? (
         <div className="home-creators">
@@ -109,13 +114,13 @@ const Home = () => {
           {isUserLoading && !creators ? (
             <Loader />
           ) : (
-            <ul className="grid 2xl:grid-cols-2 gap-6">
-              {creators?.documents.map((creator) => (
-                <li key={creator?.$id}>
-                  <UserCard user={creator} />
-                </li>
-              ))}
-            </ul>
+            creators?.pages.map((creator, index) => (
+              <UserCard
+                key={`page-${index}`}
+                users={creator?.documents || ""}
+                action="Home"
+              />
+            ))
           )}
         </div>
       ) : (
