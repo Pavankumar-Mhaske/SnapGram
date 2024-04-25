@@ -8,6 +8,74 @@
 
 ### 🙏 Welcome to SnapGram 🙏 - A social media application with the capabilities of Instagram📱and Snapchat.🗨️
 
+## 📸 Screenshots 📷🎥
+
+<p align="center">
+  <b> 🌴🎄🌳🌲 ⭐💖 - Home - 💖⭐ 🌲🌳🎄🌴 </b>
+</p>
+
+![Home](https://github.com/Pavankumar-Mhaske/SnapGram/assets/104865937/c120cc85-a128-4eb0-b06f-0d336eef242e)
+
+<p align="center">
+  <b> 🌴🎄🌳🌲 ⭐💖 - Explore - 💖⭐ 🌲🌳🎄🌴 </b>
+</p>
+
+![Explore](https://github.com/Pavankumar-Mhaske/SnapGram/assets/104865937/c83b5337-8640-4fd4-b70c-bf2cf7150858)
+
+<p align="center">
+  <b> 🌴🎄🌳🌲 ⭐💖 - People - 💖⭐ 🌲🌳🎄🌴 </b>
+</p>
+
+![People](https://github.com/Pavankumar-Mhaske/SnapGram/assets/104865937/2646a0fd-6c48-40f8-bcc2-fee9e3bbc27b)
+
+<p align="center">
+  <b> 🌴🎄🌳🌲 ⭐💖 - Saved - 💖⭐ 🌲🌳🎄🌴 </b>
+</p>
+
+![Saved](https://github.com/Pavankumar-Mhaske/SnapGram/assets/104865937/0a42f57c-08d2-4bb8-9b0c-7b3850787c09)
+
+<p align="center">
+  <b> 🌴🎄🌳🌲 ⭐💖 - Create Post - 💖⭐ 🌲🌳🎄🌴 </b>
+</p>
+
+![Create Post](https://github.com/Pavankumar-Mhaske/SnapGram/assets/104865937/23278eec-6ad4-463f-8b4d-523d8f218078)
+
+<p align="center">
+  <b> 🌴🎄🌳🌲 ⭐💖 - Profile - 💖⭐ 🌲🌳🎄🌴 </b>
+</p>
+
+![Profile](https://github.com/Pavankumar-Mhaske/SnapGram/assets/104865937/b25df67c-7631-4bb7-8633-3fd970dccd35)
+
+<p align="center">
+  <b> 🌴🎄🌳🌲 ⭐💖 - Detailed Post - 💖⭐ 🌲🌳🎄🌴 </b>
+</p>
+
+![Detailed Post](https://github.com/Pavankumar-Mhaske/SnapGram/assets/104865937/72d8e720-2255-49ae-8bae-31f663652a7d)
+
+<p align="center">
+  <b> 🌴🎄🌳🌲 ⭐💖 - Users Account - 💖⭐ 🌲🌳🎄🌴 </b>
+</p>
+
+![Users Account](https://github.com/Pavankumar-Mhaske/SnapGram/assets/104865937/05c66fae-d3e7-41a3-9959-50c91ec96c1b)
+
+<p align="center">
+  <b> 🌴🎄🌳🌲 ⭐💖 - LogIn - 💖⭐ 🌲🌳🎄🌴 </b>
+</p>
+
+![LogIn](https://github.com/Pavankumar-Mhaske/SnapGram/assets/104865937/5aba06b1-0944-4a98-89fd-ed151dce27af)
+
+<p align="center">
+  <b> 🌴🎄🌳🌲 ⭐💖 - SignUp - 💖⭐ 🌲🌳🎄🌴 </b>
+</p>
+
+![SignUp](https://github.com/Pavankumar-Mhaske/SnapGram/assets/104865937/e84b7a9e-1dfe-41d9-a428-6ac8ad33a2d0)
+
+<p align="center">
+  <b> 🌴🎄🌳🌲 ⭐💖 - Loading - 💖⭐ 🌲🌳🎄🌴  </b>
+</p>
+
+![Loading](https://github.com/Pavankumar-Mhaske/SnapGram/assets/104865937/3bab4f7b-5f61-4ab4-a433-b69835ed2b7e)
+
 ## Badges
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
@@ -44,218 +112,6 @@ Any additional information goes here
 ## 📃 Documentation 📄
 
 [Documentation](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/React_getting_started)
-
-## 📸 Screenshots 📷🎥
-
-<p align="center">
-  <b> 🌴🎄🌳🌲 ⭐💖 - WelcomePage - 💖⭐ 🌲🌳🎄🌴 </b>
-</p>
-
-![1](https://github.com/Pavankumar-Mhaske/SnapGram/assets/104865937/c120cc85-a128-4eb0-b06f-0d336eef242e)
-
-![1WelcomePage](https://github.com/Pavankumar-Mhaske/SmaDuleX/assets/104865937/5654f096-df24-4532-ba15-7a6e4bd1d15d)
-
-<p align="center">
-  <b> 🌴🎄🌳🌲 ⭐💖 - Loading Page after WelcomePage - 💖⭐ 🌲🌳🎄🌴 </b>
-</p>
-![2](https://github.com/Pavankumar-Mhaske/SnapGram/assets/104865937/c83b5337-8640-4fd4-b70c-bf2cf7150858)
-
-![2Loading](https://github.com/Pavankumar-Mhaske/SmaDuleX/assets/104865937/5fbee14c-78e8-4fc3-b7f4-844dc46ea33b)
-
-<p align="center">
-  <b> 🌴🎄🌳🌲 ⭐💖 - SignUp Page - 💖⭐ 🌲🌳🎄🌴 </b>
-</p>
-![3](https://github.com/Pavankumar-Mhaske/SnapGram/assets/104865937/2646a0fd-6c48-40f8-bcc2-fee9e3bbc27b)
-
-![3SignupPage](https://github.com/Pavankumar-Mhaske/SmaDuleX/assets/104865937/e46be2ac-946f-4c43-aaa1-5cef3d6d4aad)
-
-<p align="center">
-  <b> 🌴🎄🌳🌲 ⭐💖 - Password Validations Page - 💖⭐ 🌲🌳🎄🌴 </b>
-</p>
-![4](https://github.com/Pavankumar-Mhaske/SnapGram/assets/104865937/0a42f57c-08d2-4bb8-9b0c-7b3850787c09)
-
-![4Password Validations](https://github.com/Pavankumar-Mhaske/SmaDuleX/assets/104865937/2787f4c5-7f4a-4fa9-a821-024f65f77301)
-
-<p align="center">
-  <b> 🌴🎄🌳🌲 ⭐💖 - SignupPage All Filled - 💖⭐ 🌲🌳🎄🌴 </b>
-</p>
-![5](https://github.com/Pavankumar-Mhaske/SnapGram/assets/104865937/23278eec-6ad4-463f-8b4d-523d8f218078)
-
-![5SignupPage](https://github.com/Pavankumar-Mhaske/SmaDuleX/assets/104865937/efd8a737-6131-478b-aec6-e2c70b4ea402)
-
-<p align="center">
-  <b> 🌴🎄🌳🌲 ⭐💖 - LoadingSignuppage - 💖⭐ 🌲🌳🎄🌴 </b>
-</p>
-![6](https://github.com/Pavankumar-Mhaske/SnapGram/assets/104865937/b25df67c-7631-4bb7-8633-3fd970dccd35)
-
-![6LoadingSignuppage](https://github.com/Pavankumar-Mhaske/SmaDuleX/assets/104865937/7b5f4e83-305d-4144-ae5a-3544adc6ba87)
-
-<p align="center">
-  <b> 🌴🎄🌳🌲 ⭐💖 - LoginPage - 💖⭐ 🌲🌳🎄🌴 </b>
-</p>
-![7](https://github.com/Pavankumar-Mhaske/SnapGram/assets/104865937/72d8e720-2255-49ae-8bae-31f663652a7d)
-
-![7LoginPage](https://github.com/Pavankumar-Mhaske/SmaDuleX/assets/104865937/a809c95a-b700-4339-995d-46b8f803dd5f)
-
-<p align="center">
-  <b> 🌴🎄🌳🌲 ⭐💖 - LoginPageLoading - 💖⭐ 🌲🌳🎄🌴 </b>
-</p>
-![8](https://github.com/Pavankumar-Mhaske/SnapGram/assets/104865937/05c66fae-d3e7-41a3-9959-50c91ec96c1b)
-
-![8LoginpageLoading](https://github.com/Pavankumar-Mhaske/SmaDuleX/assets/104865937/d8cb899f-6e42-4a53-b208-558f13205733)
-
-<p align="center">
-  <b> 🌴🎄🌳🌲 ⭐💖 - HomePage - 💖⭐ 🌲🌳🎄🌴 </b>
-</p>
-![9](https://github.com/Pavankumar-Mhaske/SnapGram/assets/104865937/5aba06b1-0944-4a98-89fd-ed151dce27af)
-
-![9Homepage](https://github.com/Pavankumar-Mhaske/SmaDuleX/assets/104865937/f6ac69b5-0483-4605-9dc6-777c0fe35e6b)
-
-<p align="center">
-  <b> 🌴🎄🌳🌲 ⭐💖 - CreateTodo - 💖⭐ 🌲🌳🎄🌴 </b>
-</p>
-![10](https://github.com/Pavankumar-Mhaske/SnapGram/assets/104865937/e84b7a9e-1dfe-41d9-a428-6ac8ad33a2d0)
-
-![10HomepageCreateTodo](https://github.com/Pavankumar-Mhaske/SmaDuleX/assets/104865937/53d9ecc5-d6cd-4483-8bc9-983823d499d9)
-
-<p align="center">
-  <b> 🌴🎄🌳🌲 ⭐💖 - TodoCreated - 💖⭐ 🌲🌳🎄🌴  </b>
-</p>
-![11](https://github.com/Pavankumar-Mhaske/SnapGram/assets/104865937/3bab4f7b-5f61-4ab4-a433-b69835ed2b7e)
-
-![11HomepageCreatedTodo](https://github.com/Pavankumar-Mhaske/SmaDuleX/assets/104865937/35646330-9109-44a3-9089-848b679a5514)
-
-<p align="center">
-  <b> 🌴🎄🌳🌲 ⭐💖 - Created Todo in TodoList - 💖⭐ 🌲🌳🎄🌴 </b>
-</p>
-
-![12Todocreated](https://github.com/Pavankumar-Mhaske/SmaDuleX/assets/104865937/a2618948-2289-40fe-8c0a-4f5ea25afb96)
-
-<p align="center">
-  <b> 🌴🎄🌳🌲 ⭐💖 - TodoList - 💖⭐ 🌲🌳🎄🌴 </b>
-</p>
-
-![13TodoList](https://github.com/Pavankumar-Mhaske/SmaDuleX/assets/104865937/215a10e8-e25a-4596-87f6-5a5c317a79e9)
-
-<p align="center">
-  <b> 🌴🎄🌳🌲 ⭐💖 - UpdateTodo - 💖⭐ 🌲🌳🎄🌴 </b>
-</p>
-
-![14UpdateTodo](https://github.com/Pavankumar-Mhaske/SmaDuleX/assets/104865937/ac3c3340-9683-4113-bfc5-4cf97f923eb7)
-
-<p align="center">
-  <b> 🌴🎄🌳🌲 ⭐💖 - Todo Updated - 💖⭐ 🌲🌳🎄🌴 </b>
-</p>
-
-![15TodoUpdated](https://github.com/Pavankumar-Mhaske/SmaDuleX/assets/104865937/e8a7983a-03ed-4a59-9363-f04406e7bc6b)
-
-<p align="center">
-  <b> 🌴🎄🌳🌲 ⭐💖 - Updated Todo in TodoList - 💖⭐ 🌲🌳🎄🌴 </b>
-</p>
-
-![16Todoupdated](https://github.com/Pavankumar-Mhaske/SmaDuleX/assets/104865937/839ed14e-3a76-417f-ac9d-0f39042609fc)
-
-<p align="center">
-  <b> 🌴🎄🌳🌲 ⭐💖 - Delete Todo - 💖⭐ 🌲🌳🎄🌴 </b>
-</p>
-
-![17DeleteTodo](https://github.com/Pavankumar-Mhaske/SmaDuleX/assets/104865937/df800a86-5045-4ba2-ba8c-40d09be1bc1f)
-
-<p align="center">
-  <b> 🌴🎄🌳🌲 ⭐💖 - Priority Choice - 💖⭐ 🌲🌳🎄🌴 </b>
-</p>
-
-![18priorirySet](https://github.com/Pavankumar-Mhaske/SmaDuleX/assets/104865937/6b062802-239e-41a2-9f78-1b0bac716d55)
-
-<p align="center">
-  <b> 🌴🎄🌳🌲 ⭐💖 - Selected Priority Choice - Completed - 💖⭐ 🌲🌳🎄🌴 </b>
-</p>
-
-![19setedPrioriry](https://github.com/Pavankumar-Mhaske/SmaDuleX/assets/104865937/409866c2-cc03-4848-af07-2dad756e5c02)
-
-<p align="center">
-  <b> 🌴🎄🌳🌲 ⭐💖 - EventsPage - 💖⭐ 🌲🌳🎄🌴 </b>
-</p>
-
-![20Eventspage](https://github.com/Pavankumar-Mhaske/SmaDuleX/assets/104865937/f8a8d749-2eea-4187-bc8b-e65f210a6545)
-
-<p align="center">
-  <b> 🌴🎄🌳🌲 ⭐💖 - GuidePage - 💖⭐ 🌲🌳🎄🌴 </b>
-</p>
-
-![21guidePage](https://github.com/Pavankumar-Mhaske/SmaDuleX/assets/104865937/01a505e2-ef63-43ca-99a8-ef29feae9419)
-
-<p align="center">
-  <b> 🌴🎄🌳🌲 ⭐💖 - GuidePage Step-1 - 💖⭐ 🌲🌳🎄🌴 </b>
-</p>
-
-![22guidePageSetp1](https://github.com/Pavankumar-Mhaske/SmaDuleX/assets/104865937/380ccfbd-249f-4ba4-8415-b3e75c5b29ed)
-
-<p align="center">
-  <b> 🌴🎄🌳🌲 ⭐💖 - GuidePage Step-2 - 💖⭐ 🌲🌳🎄🌴 </b>
-</p>
-
-![23GuidePageStep2](https://github.com/Pavankumar-Mhaske/SmaDuleX/assets/104865937/d8e8e1c9-79e1-45af-9082-5577f344279f)
-
-<p align="center">
-  <b> 🌴🎄🌳🌲 ⭐💖 - Verification Page - 💖⭐ 🌲🌳🎄🌴 </b>
-</p>
-
-![24Verification](https://github.com/Pavankumar-Mhaske/SmaDuleX/assets/104865937/7b7d8ee0-ea65-4eac-930b-29235fdbfbf3)
-
-<p align="center">
-  <b> 🌴🎄🌳🌲 ⭐💖 - Vefication by OTP (SMS) - 💖⭐ 🌲🌳🎄🌴 </b>
-</p>
-
-![25VerificationOtp](https://github.com/Pavankumar-Mhaske/SmaDuleX/assets/104865937/74c55004-f903-4d69-8bb5-f59f9bff4ba6)
-
-<p align="center">
-  <b> 🌴🎄🌳🌲 ⭐💖 - EventsPage UnLock after Claim of Gold MemberShip - 💖⭐ 🌲🌳🎄🌴  </b>
-</p>
-
-![26EventsPage](https://github.com/Pavankumar-Mhaske/SmaDuleX/assets/104865937/aa5bcd65-eb1e-4352-ae2c-f23de27a3908)
-
-<p align="center">
-  <b> 🌴🎄🌳🌲 ⭐💖 - Set Date - 💖⭐ 🌲🌳🎄🌴 </b>
-</p>
-
-![27SetDate](https://github.com/Pavankumar-Mhaske/SmaDuleX/assets/104865937/9c95cee9-dcda-4b80-98ec-b75929617a5e)
-
-<p align="center">
-  <b> 🌴🎄🌳🌲 ⭐💖 - Set Time - 💖⭐ 🌲🌳🎄🌴 </b>
-</p>
-
-![28SetTime](https://github.com/Pavankumar-Mhaske/SmaDuleX/assets/104865937/70f90c1c-1dc2-4289-ba54-3bf08bc366f7)
-
-<p align="center">
-  <b> 🌴🎄🌳🌲 ⭐💖 - Event set Successfully - 💖⭐ 🌲🌳🎄🌴 </b>
-</p>
-
-![29EventSet](https://github.com/Pavankumar-Mhaske/SmaDuleX/assets/104865937/fba96a86-f2c9-4c14-a41f-36a79f3e61da)
-
-<p align="center">
-  <b> 🌴🎄🌳🌲 ⭐💖 - Events - 💖⭐ 🌲🌳🎄🌴 </b>
-</p>
-
-![30Events](https://github.com/Pavankumar-Mhaske/SmaDuleX/assets/104865937/478333af-eff2-434e-87c9-f9f565de6268)
-
-<p align="center">
-  <b> 🌴🎄🌳🌲 ⭐💖 - WhatsApp Reminder for Events - 💖⭐ 🌲🌳🎄🌴 </b>
-</p>
-
-![31WhatsAppReminder](https://github.com/Pavankumar-Mhaske/SmaDuleX/assets/104865937/97302da4-c468-4b96-9568-5bf64113cb54)
-
-<p align="center">
-  <b> 🌴🎄🌳🌲 ⭐💖 - Delete Event - 💖⭐ 🌲🌳🎄🌴 </b>
-</p>
-
-![32DeleteEvents](https://github.com/Pavankumar-Mhaske/SmaDuleX/assets/104865937/65326cfe-87fd-4dd4-ad64-231bf8bef028)
-
-<p align="center">
-  <b> 🌴🎄🌳🌲 ⭐💖 - Event Deleted Successfully - 💖⭐ 🌲🌳🎄🌴 </b>
-</p>
-
-![33DeleteEvents](https://github.com/Pavankumar-Mhaske/SmaDuleX/assets/104865937/c7cf45c2-b79c-4b26-974f-4551178b14b2)
 
 ## Tech Stack
 
